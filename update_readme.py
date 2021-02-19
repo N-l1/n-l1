@@ -9,8 +9,11 @@ def main():
         string: Languages percentages and bar.
     """
     bar = ''
-    yaml = 'Top languages!:\n'
     langs = {}
+    yaml = 'Top languages!:\n'
+
+    # Please change to your username
+    usr = 'N-l1'
 
     # GitHub official language colors
     with open('lang_colors.json', 'r') as file:
@@ -18,14 +21,14 @@ def main():
 
     repos = [repo["name"] for repo in
              requests.get(
-                 url='https://api.github.com/users/n-l1/repos').json()
+                 url=f'https://api.github.com/users/{usr}/repos').json()
              # Remove this to include forks
              if not repo["fork"]]
 
     # Adding all languages from all user repos
     for repo in repos:
         repo_lang = requests.get(
-            url=f'https://api.github.com/repos/n-l1/{repo}/languages').json()
+            url=f'https://api.github.com/repos/{usr}/{repo}/languages').json()
         for lang, val in repo_lang.items():
             if lang in langs:
                 langs[lang] += val

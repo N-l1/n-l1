@@ -36,7 +36,7 @@ jobs:
 
       - name: Update README
         run: |-
-          python build_readme.py
+          python update_readme.py
           cat README.md
 
       - name: Commit and push if changed

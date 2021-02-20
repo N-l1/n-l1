@@ -1,5 +1,5 @@
 ``` yaml
-Top languages!:
+Top languages:
   - Python 95%
   - Shell 3%
   - JavaScript 1%

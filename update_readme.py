@@ -8,12 +8,13 @@ def main():
     Returns:
         string: Languages percentages and bar.
     """
-    bar = ''
-    langs = {}
-    yaml = 'Top languages!:\n'
 
     # Please change to your username
     usr = 'N-l1'
+
+    bar = ''
+    langs = {}
+    yaml = 'Top languages:\n'
 
     # GitHub official language colors
     with open('lang_colors.json', 'r') as file:
@@ -38,14 +39,14 @@ def main():
 
     # Parse data into percentages and bar
     for lang, val in dict(sorted(langs.items(),
-                                 key=lambda item: item[1], reverse=True)
-                          ).items():
+                                 key=lambda item: item[1],
+                                 reverse=True)).items():
         percent = int(val/total * 100)
         yaml += f'  - {lang} {percent}%\n'
-        bar += (f'![{lang}](https://via.placeholder.com/' +
+        bar += (f'![{lang}](https://via.placeholder.com/'
                 f'{int(percent*1.8)}x10/{colors[lang]["color"][1:]}/?text=+)')
 
-    return f'``` yaml\n{yaml}```\n\n{bar}'
+    return f'``` yaml\n{yaml}```\n\n{bar}\n'
 
 
 if __name__ == '__main__':

@@ -17,7 +17,7 @@ def main():
     yaml = 'Top languages:\n'
 
     # GitHub official language colors
-    with open('lang_colors.json', 'r') as file:
+    with open('colors.json', 'r') as file:
         colors = json.load(file)
 
     repos = [repo["name"] for repo in

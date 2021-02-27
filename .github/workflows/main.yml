@@ -45,7 +45,5 @@ jobs:
           git config --global user.email "action@github.com"
           git config --global user.name "README Bot"
           git add -A
-          git diff-index --quiet HEAD \ 
-          || git commit -m "🤖  docs: Automated languages update" \
-          -m "Automated README top languages update using GitHub Actions."
+          git diff-index --quiet HEAD || git commit -m "🤖  docs: Automated languages update" -m "Automated README top languages update using GitHub Actions."
           git push

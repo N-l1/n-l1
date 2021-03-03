@@ -42,8 +42,8 @@ jobs:
       - name: Commit and push if changed
         run: |-
           git diff
-          git config --global user.email "action@github.com"
-          git config --global user.name "README Bot"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "readme-bot"
           git add -A
           git diff-index --quiet HEAD || git commit -m "🤖  docs: Automated languages update" -m "Automated README top languages update using GitHub Actions."
           git push

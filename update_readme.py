@@ -46,7 +46,7 @@ def main():
         bar += (f'[![{lang}](https://via.placeholder.com/'
                 f'{int(percent*1.8)}x10/{colors[lang]["color"][1:]}/?text=+)]'
                 f"(https://github.com/search?l={lang.replace(' ', '+')}&q=user"
-                f"%3A{usr}+language%3A{lang.replace(' ', '+')})")
+                f"%3A{usr}+language%3A{lang.replace(' ', '')}&type=code)")
     return f'``` yaml\n{yaml}```\n\n{bar}\n'
 
 

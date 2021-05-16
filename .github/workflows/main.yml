@@ -46,4 +46,8 @@ jobs:
           git config --global user.name "readme-bot"
           git add -A
           git diff-index --quiet HEAD || git commit -m "🤖  docs: Automated languages update" -m "Automated README top languages update using GitHub Actions."
-          git push
+
+      - name: Push changes to repository
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}

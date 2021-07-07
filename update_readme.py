@@ -16,15 +16,21 @@ def main():
     langs = {}
     yaml = 'Top languages:\n'
 
+    # Retrieve repo names
+    try:
+        repos = [repo["name"] for repo in
+                 requests.get(
+                     url=f'https://api.github.com/users/{usr}/repos').json()
+                 # Remove this to include forks
+                 if not repo["fork"]]
+    except TypeError:
+        print("Error: Hmm, it appears that you don't have any repos?\n"
+              "If you do, check your username and try again.")
+        exit(1)
+
     # GitHub official language colors
     with open('colors.json', 'r') as file:
         colors = json.load(file)
-
-    repos = [repo["name"] for repo in
-             requests.get(
-                 url=f'https://api.github.com/users/{usr}/repos').json()
-             # Remove this to include forks
-             if not repo["fork"]]
 
     # Adding all languages from all user repos
     for repo in repos:

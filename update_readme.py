@@ -42,11 +42,17 @@ def main():
                                  key=lambda item: item[1],
                                  reverse=True)).items():
         percent = int(val/total * 100)
-        yaml += f'  - {lang} {percent}%\n'
-        bar += (f'[![{lang}](https://via.placeholder.com/'
-                f'{int(percent*1.8)}x10/{colors[lang]["color"][1:]}/?text=+)]'
-                f"(https://github.com/search?l={lang.replace(' ', '+')}&q=user"
-                f"%3A{usr}+language%3A{lang.replace(' ', '')}&type=code)")
+        # Only if language is significant enough to show as an image
+        if percent > 0:
+            yaml += f'  - {lang} {percent}%\n'
+            # A bit of parsing here so that the image is
+            # linked to language seach for the user
+            bar += (f'[![{lang}](https://via.placeholder.com/'
+                    f'{int(percent*1.8)}x10/'
+                    f'{colors[lang]["color"][1:]}/?text=+)]'
+                    '(https://github.com/'
+                    f"search?l={lang.replace(' ', '+')}&q=user"
+                    f"%3A{usr}+language%3A{lang.replace(' ', '')}&type=code)")
     return f'``` yaml\n{yaml}```\n\n{bar}\n'
 
 

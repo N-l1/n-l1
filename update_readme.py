@@ -1,5 +1,6 @@
 import json
 import requests
+import urllib.parse
 
 
 def main():
@@ -56,9 +57,13 @@ def main():
             bar += (f'[![{lang}](https://via.placeholder.com/'
                     f'{int(percent*1.8)}x10/'
                     f'{colors[lang]["color"][1:]}/?text=+)]'
-                    '(https://github.com/'
-                    f"search?l={lang.replace(' ', '+')}&q=user"
-                    f"%3A{usr}+language%3A{lang.replace(' ', '')}&type=code)")
+                    # Specificy the language to search for
+                    '(https://github.com/search?l='
+                    f"{urllib.parse.quote(lang)}"
+                    # Search for the user
+                    f"&q=user%3A{usr}"
+                    # Show all files
+                    '&type=code)')
     return f'``` yaml\n{yaml}```\n\n{bar}\n'
 
 

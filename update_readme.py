@@ -44,7 +44,7 @@ def main():
     # Initial formatting
     yaml = '``` yaml\nTop languages:\n'
     bar = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100% 0" '
-           'preserveAspectRatio="none" height="12px">\n')
+           'preserveAspectRatio="none" height="6px">\n')
 
     start = 0
     # Parse data into percentages and bar
@@ -59,7 +59,7 @@ def main():
             # Use percentage to construct a svg bar with language color
             bar += (f'<rect x="{start}%" y="0" '
                     f'width="{scaled_percent if scaled_percent >= 1 else 1}%" '
-                    f'height="12px" fill="{colors[lang]["color"]}" />\n')
+                    f'height="6px" fill="{colors[lang]["color"]}" />\n')
             start += percent * 0.65
 
     # File end formatting

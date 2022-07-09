@@ -1,4 +1,4 @@
-```yaml
+``` yaml
 Top languages:
   - Python 70%
   - C++ 12%

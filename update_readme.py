@@ -1,21 +1,18 @@
 import json
 import requests
-import urllib.parse
 
 
 def main():
     """Pulls languages data from GitHub and returns percentages and bar.
 
     Returns:
-        string: Languages percentages and bar.
+        tuple: Tuple of languages percentages and bar.
     """
 
     # Please change to your username
     usr = 'qiz-li'
 
-    bar = ''
     langs = {}
-    yaml = 'Top languages:\n'
 
     # Retrieve repo names
     try:
@@ -44,29 +41,38 @@ def main():
                 langs[lang] = val
     total = sum(langs.values())
 
+    # Initial formatting
+    yaml = '``` yaml\nTop languages:\n'
+    bar = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100% 0" '
+           'preserveAspectRatio="none" height="12px">\n')
+
+    start = 0
     # Parse data into percentages and bar
     for lang, val in dict(sorted(langs.items(),
                                  key=lambda item: item[1],
                                  reverse=True)).items():
-        percent = int(val/total * 100)
+        percent = int(val / total * 100)
         # Only if language is significant enough to show as an image
         if percent > 0:
             yaml += f'  - {lang} {percent}%\n'
-            # A bit of parsing here so that the image is
-            # linked to language seach for the user
-            bar += (f'[![{lang}](https://via.placeholder.com/'
-                    f'{int(percent*1.8)}x10/'
-                    f'{colors[lang]["color"][1:]}/?text=+)]'
-                    # Specificy the language to search for
-                    '(https://github.com/search?l='
-                    f"{urllib.parse.quote(lang)}"
-                    # Search for the user
-                    f"&q=user%3A{usr}"
-                    # Show all files
-                    '&type=code)')
-    return f'``` yaml\n{yaml}```\n\n{bar}\n'
+            scaled_percent = percent * 0.65
+            # Use percentage to construct a svg bar with language color
+            bar += (f'<rect x="{start}%" y="0" '
+                    f'width="{scaled_percent if scaled_percent >= 1 else 1}%" '
+                    f'height="12px" fill="{colors[lang]["color"]}" />\n')
+            start += percent * 0.65
+
+    # File end formatting
+    yaml += ('```\n\n[![Languages bar](bar.svg)]'
+             f'(https://github.com/search?q=user%3A{usr}&type=code)\n')
+    bar += '</svg>'
+
+    return yaml, bar
 
 
 if __name__ == '__main__':
+    yaml, bar = main()
     with open('README.md', 'w') as file:
-        file.write(main())
+        file.write(yaml)
+    with open('bar.svg', 'w') as file:
+        file.write(bar)

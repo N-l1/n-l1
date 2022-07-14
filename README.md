@@ -1,6 +1,6 @@
 ``` yaml
 Top languages:
-  - Python 70%
+  - Python 71%
   - C++ 11%
   - Shell 10%
   - Vim script 5%

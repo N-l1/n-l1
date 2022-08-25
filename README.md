@@ -3,7 +3,7 @@ Top languages:
   - Python 71%
   - C++ 11%
   - Shell 10%
-  - Vim script 5%
+  - Vim Script 5%
   - JavaScript 1%
 ```
 

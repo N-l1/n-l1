@@ -43,29 +43,30 @@ def main():
 
     # Initial formatting
     yaml = '``` yaml\nTop languages:\n'
-    bar = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100% 0" '
-           'preserveAspectRatio="none" height="6px">\n')
+    bar = ('''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 6" height="6">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">\n''')
 
     start = 0
     # Parse data into percentages and bar
     for lang, val in dict(sorted(langs.items(),
                                  key=lambda item: item[1],
                                  reverse=True)).items():
-        percent = int(val / total * 100)
-        # Only if language is significant enough to show as an image
-        if percent > 0:
-            yaml += f'  - {lang} {percent}%\n'
-            scaled_percent = percent * 0.65
-            # Use percentage to construct a svg bar with language color
-            bar += (f'<rect x="{start}%" y="0" '
-                    f'width="{scaled_percent if scaled_percent >= 1 else 1}%" '
-                    f'height="6px" fill="{colors[lang]["color"]}" />\n')
-            start += percent * 0.65
+        percent = val / total * 100
+        yaml += f'  - {lang} {round(percent, 1) if int(percent) == 0 else int(percent)}%\n'
+        # Use percentage to construct a svg bar with language color
+        bar += (
+            f'''        <stop offset="{start}%" stop-color="{colors[lang]["color"]}" />
+        <stop offset="{start + percent}%" stop-color="{colors[lang]["color"]}" />\n''')
+        start += percent
 
     # File end formatting
     yaml += ('```\n\n[![Languages bar](bar.svg)]'
              f'(https://github.com/search?q=user%3A{usr}&type=code)\n')
-    bar += '</svg>'
+    bar += '''    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="100%" height="6px" fill="url(#gradient)" rx="1.5" />
+</svg>'''
 
     return yaml, bar
 

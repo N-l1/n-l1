@@ -1,7 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100% 0" preserveAspectRatio="none" height="6px">
-<rect x="0%" y="0" width="46.15%" height="6px" fill="#3572A5" />
-<rect x="46.15%" y="0" width="7.15%" height="6px" fill="#f34b7d" />
-<rect x="53.3%" y="0" width="6.5%" height="6px" fill="#89e051" />
-<rect x="59.8%" y="0" width="3.25%" height="6px" fill="#199f4b" />
-<rect x="63.05%" y="0" width="1%" height="6px" fill="#f1e05a" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 6" height="6">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="#3572A5" />
+        <stop offset="74.17610153602077%" stop-color="#3572A5" />
+        <stop offset="74.17610153602077%" stop-color="#f34b7d" />
+        <stop offset="84.62315070088921%" stop-color="#f34b7d" />
+        <stop offset="84.62315070088921%" stop-color="#89e051" />
+        <stop offset="93.94134386562453%" stop-color="#89e051" />
+        <stop offset="93.94134386562453%" stop-color="#199f4b" />
+        <stop offset="98.60099516838538%" stop-color="#199f4b" />
+        <stop offset="98.60099516838538%" stop-color="#f1e05a" />
+        <stop offset="100.0%" stop-color="#f1e05a" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="100%" height="6px" fill="url(#gradient)" rx="1.5" />
 </svg>

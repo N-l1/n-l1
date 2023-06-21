@@ -1,9 +1,9 @@
 ``` yaml
 Top languages:
-  - Python 71%
-  - C++ 11%
-  - Shell 10%
-  - Vim Script 5%
+  - Python 74%
+  - C++ 10%
+  - Shell 9%
+  - Vim Script 4%
   - JavaScript 1%
 ```
 
